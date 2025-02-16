@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body{
+            background-color: rgb(74, 15, 15);
+            color: white;
+        }
+        label{
+            margin: 10px;
+        }
+        input{
+            margin: 10px;
+        }
+        
+       
+        .h11{
+            font-size: 50px;
+            text-align: center;
+            margin: 20px;
+            color: white;
+        }
+        button{
+            height: 30px;
+            width: 100px;
+            border: 2px solid black ;
+            background-color: rgb(149, 67, 67);
+        }
+        .time {
+            border: 2px solid black;
+            font-size: 17px;
+            font-weight: bold;
+            color: white;
+            background-color: rgb(194, 83, 83);
+        }
+        
+
+    </style>
+    
+    <body>
+        <div class="h11">QCM :Informatique / Programmation :</div>
+        <form onsubmit="return score()">
+            <div class="time" id="dd1"></div>
+            <label for="dem1">Quelle est la fonction pour afficher un message à l'écran en C++ ?</label><br>
+            <input type="radio" id="demo1" name="q1" value="print()">print()</label> <br>
+            <input type="radio" id="demo2" name="q1" value="echo()"> echo()<br>
+            <input type="radio" id="demo3" name="q1" value="printf()"> printf()<br>
+            <input type="radio" id="demo4" name="q1" value="cout()"> cout()<br><br>
+            
+            <div class="time" id="dd2"></div>
+            <label for="dem2">Quel est le type de données utilisé pour stocker un nombre à virgule flottante en Python ?</label><br>
+            <input type="radio" id="demo5" name="q2" value="int"> int<br>
+            <input type="radio" id="demo6" name="q2" value="float"> float<br>
+            <input type="radio" id="demo7" name="q2" value="double"> double<br>
+            <input type="radio" id="demo8" name="q2" value="char"> char<br><br>
+        
+            <div class="time" id="dd3"></div>
+            <label for="dem3">Quel est le résultat de 8 × 7 ?</label><br>
+            <input type="radio" id="demo9" name="q3" value="56"> 56<br>
+            <input type="radio" id="demo10" name="q3" value="48"> 48<br>
+            <input type="radio" id="demo11" name="q3" value="64"> 64<br>
+            <input type="radio" id="demo12" name="q3" value="70"> 70<br><br>
+        
+            <div class="time" id="dd4"></div>
+            <label for="dem4">Quelle est la somme des angles dans un triangle ?</label><br>
+            <input type="radio" id="demo13" name="q4" value="90"> 90<br>
+            <input type="radio" id="demo14" name="q4" value="180"> 180<br>
+            <input type="radio" id="demo15" name="q4" value="360"> 360<br>
+            <input type="radio" id="demo16" name="q4" value="270"> 270<br><br>
+        
+            <div class="time" id="dd5"></div>
+            <label for="dem5">Qui était le premier président des États-Unis ?</label><br>
+            <input type="radio" id="demo17" name="q5" value="Thomas Jefferson"> Thomas Jefferson<br>
+            <input type="radio" id="demo18" name="q5" value="John Adams"> John Adams<br>
+            <input type="radio" id="demo19" name="q5" value="George Washington"> George Washington<br>
+            <input type="radio" id="demo20" name="q5" value="Abraham Lincoln"> Abraham Lincoln<br><br>
+        
+            <div class="time" id="dd6"></div>
+            <label for="dem6">Quand a eu lieu la Révolution Française ?</label><br>
+            <input type="radio" id="demo21" name="q6" value="1776"> 1776<br>
+            <input type="radio" id="demo22" name="q6" value="1789"> 1789<br>
+            <input type="radio" id="demo23" name="q6" value="1812"> 1812<br>
+            <input type="radio" id="demo24" name="q6" value="1848"> 1848<br><br>
+        
+            <div class="time" id="dd7"></div>
+            <label for="dem7">Qui a découvert l'Amérique ?</label><br>
+            <input type="radio" id="demo25" name="q7" value="Christophe Colomb"> Christophe Colomb<br>
+            <input type="radio" id="demo26" name="q7" value="Marco Polo"> Marco Polo<br>
+            <input type="radio" id="demo27" name="q7" value="Ferdinand Magellan"> Ferdinand Magellan<br>
+            <input type="radio" id="demo28" name="q7" value="Vasco de Gama"> Vasco de Gama<br><br>
+        
+            <div class="time" id="dd8"></div>
+            <label for="dem8">Quelle est la principale source d'énergie du soleil ?</label><br>
+            <input type="radio" id="demo29" name="q8" value="a"> La fusion nucléaire<br>
+            <input type="radio" id="demo30" name="q8" value="b"> La fission nucléaire<br>
+            <input type="radio" id="demo31" name="q8" value="c"> La combustion chimique<br>
+            <input type="radio" id="demo32" name="q8" value="d"> La fission chimique<br><br>
+        
+            <div class="time" id="dd9"></div>
+            <label for="dem9">Quel est l'élément chimique dont le symbole est "O" ?</label><br>
+            <input type="radio" id="demo33" name="q9" value="a"> Oxygène<br>
+            <input type="radio" id="demo34" name="q9" value="b"> Or<br>
+            <input type="radio" id="demo35" name="q9" value="c"> Osmium<br>
+            <input type="radio" id="demo36" name="q9" value="d"> Ozone<br><br>
+        
+            <div class="time" id="dd10"></div>
+            <label for="dem10">Qu'est-ce qu'un atome ?</label><br>
+            <input type="radio" id="demo37" name="q10" value="a"> La plus petite particule d'un élément chimique<br>
+            <input type="radio" id="demo38" name="q10" value="b"> Une molécule d'eau<br>
+            <input type="radio" id="demo39" name="q10" value="c"> Un composé chimique<br>
+            <input type="radio" id="demo40" name="q10" value="d"> Un noyau d'un rayon gamma<br><br>
+        
+            <div class="time" id="dd11"></div>
+            <label for="dem11">Qui a écrit "Les Misérables" ?</label><br>
+            <input type="radio" id="demo41" name="q11" value="a"> Victor Hugo<br>
+            <input type="radio" id="demo42" name="q11" value="b"> Émile Zola<br>
+            <input type="radio" id="demo43" name="q11" value="c"> Albert Camus<br>
+            <input type="radio" id="demo44" name="q11" value="d"> Gustave Flaubert<br><br>
+        
+            <div class="time" id="dd12"></div>
+            <label for="dem12">Quel est le titre du premier livre de la série "Harry Potter" ?</label><br>
+            <input type="radio" id="demo45" name="q12" value="a"> Harry Potter et la Chambre des Secrets<br>
+            <input type="radio" id="demo46" name="q12" value="b"> Harry Potter à l'école des sorciers<br>
+            <input type="radio" id="demo47" name="q12" value="c"> Harry Potter et les Reliques de la Mort<br>
+            <input type="radio" id="demo48" name="q12" value="d"> Harry Potter et l'Ordre du Phénix<br><br>
+            <button>submit</button>
+        </form>
+                 
+    </body>
+    <script>
+        function check1(name){
+            let radios =document.getElementsByName(name);
+            let issele=false ;
+            for(let i=0;i<radios.length;i++){
+                if(radios[i].checked) {
+                    issele=true;
+                    break;
+
+                }
+            }
+            if(issele==false){
+                return false ;
+            }
+            else{
+                return true ; 
+            }
+            
+        }
+        function score(){
+            if (check1('q1')==false ||check1('q2')==false ||check1('q3')==false ||check1('q4')==false ||check1('q5')==false ||check1('q6')==false ||check1('q7')==false ||check1('q8')==false ||check1('q9')==false ||check1('q10')==false ||check1('q11')==false ||check1('q12')==false){
+                alert("Merci de selectionner pour chaque question une reponse ");
+            }
+            //calculer le score 
+            else {
+                var score=0;
+                if (document.querySelector('input[name="q1"]:checked').value=="cout()"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q2"]:checked').value=="float"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q3"]:checked').value=="56"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q4"]:checked').value=="180"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q5"]:checked').value=="George Washington"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q6"]:checked').value=="Christophe Colomb"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q7"]:checked').value=="La fusion nucléaire"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q8"]:checked').value=="Oxygène"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q9"]:checked').value=="La plus petite particule d'un élément chimique"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q10"]:checked').value=="Victor Hugo"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q11"]:checked').value=="Harry Potter à l'école des sorciers"){
+                    score+=1;
+                }
+                if (document.querySelector('input[name="q12"]:checked').value=="1789"){
+                    score+=1;
+                }
+                var newelem=document.createElement('div');
+                newelem.style.border="2px solid black";
+                newelem.style.backgroundColor="rgb(194, 83, 83)";
+                newelem.style.width="150px";
+                newelem.style.height="30px";
+                newelem.style.fontSize="20px";
+                newelem.innerHTML='Votre  score est : '+score;
+                document.body.prepend(newelem);
+                window.scrollTo( {
+                top: 0,
+                left: 0,
+                behavior: 'smooth' // Ajoute l'effet de défilement fluide
+            });
+
+
+                
+            }
+            
+            return false ; 
+
+        }
+        let timeleft=5;
+        let currentquestion=1;
+        let interval;
+        function start(){
+            timeleft=5;
+            interval=setInterval( ()=>{
+                document.getElementById('dd'+currentquestion).innerHTML='Time left is :'+ timeleft +'seconds';
+                if (timeleft<=0){
+                    clearInterval(interval);
+                    disable('q'+currentquestion);
+                    moveto();
+                }else {
+                    timeleft--;
+                }
+            },1000);
+        }
+
+        function disable(qid){
+            let var1=document.getElementsByName(qid);
+            for(let i=0;i<var1.length;i++){
+                var1[i].disabled=true;
+            }
+            //alert('time is up move to the next question ')
+        }
+        function moveto(){
+            if (currentquestion<=12){
+                currentquestion+=1;
+                start();
+            }
+            else {
+                alert("quiz finished , go to see results !");
+            }
+        }
+        window.onload = function () {
+            start();
+        };
+        
+
+    </script>
+</html>

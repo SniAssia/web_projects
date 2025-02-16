@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .h11{
+            color: white;
+            background-color: rgb(37, 40, 71);
+            height: 430px;
+            width: 1010px;
+        }
+        select, input {
+            height: 30px;
+            margin: 7px;
+            width: 990px;
+        }
+        button {
+            width: 1000px;
+            height: 45px;
+            font-weight: bold;
+            background-color: black;
+            color: white;
+        }
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        .question-options {
+            margin-left: 20px;
+        }
+        #generatedApiUrl {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #generatedApiUrl{
+            background-color:  rgb(149, 67, 67);
+            color: white;
+            width: 1010px;
+
+        }
+        #quizResults{
+            background-color:  rgb(74, 15, 15);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            width: 1010px;
+        }
+    </style>
+    <body>
+        <form id="quizForm" class="h11">
+            <h1>API Helper</h1>
+            <label>Number of questions : </label><br>
+            <input id="dem1" type="text"><br>
+            <label>Select category : </label><br>
+            <select id="dem2"></select><br>
+            <label>Select difficulty : </label><br>
+            <select id="dem3">
+                <option value="medium">Medium</option>
+                <option value="easy">Easy</option>
+                <option value="hard">Hard</option>
+            </select><br>
+            <label>Select type : </label><br>
+            <select id="dem4">
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">True /False</option>
+            </select><br>
+            <label>Select Encoding : </label><br>
+            <select id="dem5">
+                <option value="default-encoding">Default Encoding</option>
+                <option value="legacy-url-encoding">Legacy URL Encoding</option>
+                <option value="url-encoding-rfc3986">URL Encoding (RFC 3986)</option>
+                <option value="base64-encoding">Base64 Encoding</option>
+            </select><br>
+            <button type="submit">Generate API URL</button>
+        </form>
+        <div id="generatedApiUrl"></div>
+        <div id="quizResults"></div>
+
+    </body>
+    <script>
+        function pop1(categories){
+            let var1 = document.getElementById('dem2');
+            let defaultOption = document.createElement('option');
+            defaultOption.textContent = "Any category";
+            var1.appendChild(defaultOption);
+            categories.forEach(element => {
+                let option = document.createElement('option');
+                option.value = element.id;
+                option.textContent = element.name;
+                var1.appendChild(option);
+            });
+        }
+
+        window.onload = function(){
+            fetch('https://opentdb.com/api_category.php')
+                .then(response => response.json())
+                .then(data => { 
+                    const categories = data.trivia_categories;
+                    pop1(categories);
+                })
+                .catch(error => console.error('Error fetching categories:', error));
+        };
+
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            let numberOfQuestions = document.getElementById('dem1').value || 10;  
+            let category = document.getElementById('dem2').value || "9";  
+            let difficulty = document.getElementById('dem3').value === "Any difficulty" ? "" : document.getElementById('dem3').value;
+            let type = document.getElementById('dem4').value === "Any type" ? "" : document.getElementById('dem4').value;
+            let encoding = document.getElementById('dem5').value || "none";  
+            let apiUrl = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=${type}`;
+
+            // Display the generated API URL
+            document.getElementById('generatedApiUrl').innerHTML = `
+                <h2>Generated Quiz :</h2>
+                
+            `;
+            
+            // Fetch questions from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.response_code === 0) {
+                        displayQuiz(data.results);
+                    } else {
+                        document.getElementById('quizResults').innerHTML = "<p>No questions found. Please adjust your query.</p>";
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('quizResults').innerHTML = "<p>Error retrieving quiz data.</p>";
+                    console.error('Error fetching quiz data:', error);
+                });
+        });
+
+let currentquestion = 1;
+let questions;
+let timeleft;
+let interval;
+
+function startTimer() {
+    timeleft = 5;
+    interval = setInterval(() => {
+        // Update the timer display for the current question
+        document.getElementById(`dd${currentquestion}`).innerHTML = `Time left for this question  is: ${timeleft} seconds`;
+        document.getElementById(`dd${currentquestion}`).style.backgroundColor="rgb(149, 67, 67)";
+        if (timeleft <= 0) {
+            clearInterval(interval);
+            disable(`q${currentquestion}`);
+            moveto();
+        } else {
+            timeleft--;
+        }
+    }, 1000);
+}
+
+function disable(qid) {
+    let options = document.getElementsByName(qid);
+    for (let i = 0; i < options.length; i++) {
+        options[i].disabled = true;
+    }
+}
+
+function moveto() {
+    currentquestion++;
+    if (currentquestion < questions.length) {
+        startTimer();  // Start the timer for the next question
+    } else {
+        alert("Quiz finished! Check your score.");
+    }
+}
+
+function displayQuiz(fetchedQuestions) {
+    questions = fetchedQuestions;
+    let quizContainer = document.getElementById('quizResults');
+    quizContainer.innerHTML = ""; // Clear any previous results
+    let score = 0;
+
+    questions.forEach((question, index) => {
+        let questionDiv = document.createElement('div');
+        questionDiv.classList.add('quiz-question');
+
+        // Shuffle the answers
+        let options = question.incorrect_answers.slice();
+        options.push(question.correct_answer);
+        options = shuffleArray(options);
+
+        // Create HTML for question and options
+        questionDiv.innerHTML = `
+            <h3>Q${index+1 }: ${question.question}</h3>
+            <div id="dd${index+1}"></div>
+            <div class="question-options">
+                ${options.map(option => `
+                    <input type="radio" name="q${index + 1}" value="${option}"> ${option}`).join('')}
+            </div>
+        `;
+        quizContainer.appendChild(questionDiv);
+    });
+
+    // Start the timer for the first question
+    startTimer();
+    
+    // Submit button to evaluate the quiz
+    let submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit Quiz';
+    submitButton.style.backgroundColor=" rgb(149, 67, 67)";
+    submitButton.onclick = function () {
+        score = 0;
+        questions.forEach((question, index) => {
+            let selectedAnswer = document.querySelector(`input[name="q${index + 1}"]:checked`);
+            if (selectedAnswer && selectedAnswer.value === question.correct_answer) {
+                score++;
+            }
+        });
+
+        // Display the score
+        let resultDiv = document.createElement('div');
+        resultDiv.innerHTML = `<h2>Your score: ${score} / ${questions.length}</h2>`;
+        resultDiv.style.border = "2px solid black";
+        resultDiv.style.backgroundColor = " rgb(149, 67, 67)";
+        resultDiv.style.width = "150px";
+        resultDiv.style.height = "30px";
+        resultDiv.style.fontSize = "20px";
+        resultDiv.innerHTML = `Votre score est : ${score}`;
+        document.body.prepend(resultDiv);
+        
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    };
+    quizContainer.appendChild(submitButton);
+}
+
+// Shuffle function to randomize the answer order
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+}
+    </script>
+</html>
