@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Todo List</title>
+    <style>
+        body {
+            background: #352f5b !important;
+        }
+
+        .container {
+            max-width: 400px !important;
+        }
+
+        input[type=text],
+        input[type=text]:focus {
+            color: #fff;
+            border: none;
+            background: rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+
+        .todos li {
+            background: #423a6f;
+        }
+
+        .delete {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="text-center text-light my-4">
+            <h1 class="mb-4">Todo List</h1>
+            <form id="task-form" class="search">
+                <input id="filterInput" class="form-control m-auto" type="text" name="search" placeholder="Search todos" />
+            </form>
+        </header>
+
+        <ul id="dem3" class="list-group todos mx-auto text-light">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>play mariokart</span>
+                <i class="far fa-trash-alt delete"></i>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>defeat ganon in zelda</span>
+                <i class="far fa-trash-alt delete"></i>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>make a veggie pie</span>
+                <i class="far fa-trash-alt delete"></i>
+            </li>
+        </ul>
+
+        <form class="add text-center my-4">
+            <label class="text-light">Add a new todo...</label>
+            <input id="dem1" class="form-control m-auto" type="text" name="add">
+        </form>
+
+    </div>
+
+    <script>
+        // Selectionner les éléments du DOM
+        const taskInput = document.getElementById('dem1');
+        const taskList = document.getElementById('dem3');
+        const filterInput = document.getElementById('filterInput');
+
+        let tasks = [
+            'play mariokart',
+            'defeat ganon in zelda',
+            'make a veggie pie'
+        ];
+
+        // Fonction pour ajouter une tâche
+        function addTask(event) {
+            event.preventDefault();
+            const todo = taskInput.value.trim();
+            if (todo) {
+                tasks.push(todo); 
+                renderTasks(); 
+                taskInput.value = ''; 
+            } else {
+                alert("Merci d'entrer une tâche.");
+            }
+        }
+
+        // Fonction pour afficher les tâches
+        function renderTasks() {
+            taskList.innerHTML = ''; 
+
+           
+            tasks.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+                li.innerHTML = `
+                    <span>${todo}</span>
+                    <i class="far fa-trash-alt delete" onclick="deleteTask(${index})"></i>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        // Fonction pour supprimer une tâche
+        function deleteTask(index) {
+            tasks.splice(index, 1); 
+            renderTasks(); 
+        }
+
+        // Fonction pour filtrer les tâches
+        function filterTasks(event) {
+            const filterText = event.target.value.toLowerCase();
+
+            const filteredTasks = tasks.filter(todo =>
+                todo.toLowerCase().includes(filterText)
+            );
+
+            taskList.innerHTML = ''; // Réinitialiser la liste
+            filteredTasks.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+                li.innerHTML = `
+                    <span>${todo}</span>
+                    <i class="far fa-trash-alt delete" onclick="deleteTask(${index})"></i>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+         document.querySelector('.add').addEventListener('submit', addTask);
+
+        filterInput.addEventListener('input', filterTasks);
+
+        renderTasks();
+    </script>
+
+</body>
+
+</html>
