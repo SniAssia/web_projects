@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    .count2{
+        background-color: rgb(61, 12, 12);
+        color: white;
+        font-weight: bold;
+        margin: 10px;
+        border-radius: 4px;
+        width: 400px;
+        height: 30px;
+        font-size: large;
+        padding: 10px;
+    }
+    .cont1{
+        padding: 10px;
+        background-color: rgb(138, 45, 45);
+        color: white;
+        font-weight: bold;
+        margin: 10px;
+        border-radius: 4px;
+        width: 400px;
+        height: 50px;
+        font-size: x-large;
+    }
+    button{
+        width: 100px;
+        height: 30px;
+        margin: 10px;
+
+    }
+
+</style>
+<body>
+    <h1>Task List</h1>
+   
+    <div id="app1">
+        <div class="count2">Nombre des taches restantes est :{{ counter }} </div>
+        <div class="count2">Nombre des taches accomplies :{{counter1}}</div>
+        <input v-model="completed1" type="radio" value="not-done">
+        <label>Appuiyez sur ce bouton pour afficher les taches qui ne sont pas encore effectuées</label><br>
+        <input v-model="completed1" type="radio" value="done">
+        <label>Appuiyez sur ce bouton pour afficher les taches qui sont deja effectuées</label>
+        <div v-for="info in filteredlist">
+            <div class="cont1">{{info.title}}</div>
+            <div class="cont1">{{info.description}}</div>
+            <button @click="change(info)">Done</button>
+        </div>
+        
+
+    </div>
+    <script>
+         const app = Vue.createApp({
+            data() {
+                return {
+                    completed1:'',
+                    
+                    infos:[
+    {
+      "id": 1,
+      "title": "Faire les courses",
+      "description": "Acheter des légumes et du lait.",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Faire du sport",
+      "description": "Courir pendant 30 minutes.",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "Réviser pour l'examen",
+      "description": "Relire le chapitre 5 du manuel.",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "title": "Faire du ménage",
+      "description": "Nettoyer la maison.",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "title": "Cuisiner le dîner",
+      "description": "Préparer un repas pour 4 personnes.",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "title": "Appeler le médecin",
+      "description": "Prendre rendez-vous pour un contrôle.",
+      "completed": true
+    },
+    {
+      "id": 7,
+      "title": "Lire un livre",
+      "description": "Lire 50 pages d'un roman.",
+      "completed": false
+    },
+    {
+      "id": 8,
+      "title": "Faire le repassage",
+      "description": "Repasser la pile de linge.",
+      "completed": true
+    },
+    {
+      "id": 9,
+      "title": "Étudier pour le test",
+      "description": "Réviser les chapitres 3 et 4.",
+      "completed": false
+    },
+    {
+      "id": 10,
+      "title": "Répondre aux e-mails",
+      "description": "Répondre à tous les e-mails en attente.",
+      "completed": true
+    },
+    {
+      "id": 11,
+      "title": "Faire du jardinage",
+      "description": "Arroser les plantes et tailler les haies.",
+      "completed": false
+    },
+    {
+      "id": 12,
+      "title": "Faire les comptes",
+      "description": "Mettre à jour les finances personnelles.",
+      "completed": false
+    },
+    {
+      "id": 13,
+      "title": "Faire une sieste",
+      "description": "Dormir 30 minutes pour se reposer.",
+      "completed": true
+    },
+    {
+      "id": 14,
+      "title": "Organiser les photos",
+      "description": "Trier et organiser les photos numériques.",
+      "completed": false
+    },
+    {
+      "id": 15,
+      "title": "Réparer la voiture",
+      "description": "Changer l'huile et vérifier les pneus.",
+      "completed": true
+    },
+    {
+      "id": 16,
+      "title": "Faire du shopping",
+      "description": "Acheter des vêtements pour l'hiver.",
+      "completed": false
+    },
+    {
+      "id": 17,
+      "title": "Faire une promenade",
+      "description": "Marcher 30 minutes autour du parc.",
+      "completed": false
+    },
+    {
+      "id": 18,
+      "title": "Écrire un article",
+      "description": "Écrire un article de blog sur la productivité.",
+      "completed": true
+    },
+    {
+      "id": 19,
+      "title": "Regarder un film",
+      "description": "Regarder un film de comédie.",
+      "completed": true
+    },
+    {
+      "id": 20,
+      "title": "Visiter un musée",
+      "description": "Passer une après-midi au musée d'art moderne.",
+      "completed": false
+    }
+]
+
+                }
+            },
+            methods:{
+                change(info){
+                    info.completed=true;
+                }
+
+            },
+            computed: {
+        filteredlist() {
+            if (!this.completed1) {
+                        return this.infos;
+                    }
+            if(this.completed1=="done"){
+                return this.infos.filter(p=> {
+                    return p.completed;
+                });
+
+            }
+            if(this.completed1=="not-done"){
+                return this.infos.filter(p=> {
+                    return !p.completed;
+                });
+
+            }
+        },
+        counter(){
+            return this.infos.filter(p=>!p.completed).length;
+        },
+        counter1(){
+            return this.infos.filter(p=>p.completed).length;
+
+        }
+    }
+
+         });
+         app.mount('#app1');
+         
+    </script>
+</body>
+   
+
+</html>
