@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Manipulation de vue</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    .a1{
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+    }
+    button{
+        width: 100px;
+        height: 30px;
+        margin: 10px;
+    }
+    .a2{
+        margin: 10px;
+    }
+</style>
+<body>
+
+<div id="monapp">
+    <div>exo1 :</div>
+	<button @click="change">{{titre}}</button> 
+</div>
+<div class="a1" id="app2">
+    <div>exo 2 : </div>
+    <button @click="incrementer">++</button>
+    <div class="a2">{{compteur}}</div>
+    <button @click="decrementer">--</button>
+</div>
+<div id="ap9">
+    <div>exo 3 : </div>
+    <label>entrez ici votre texte : </label>
+    <textarea @input="entrer" v-model="valeur1">ecrire ....</textarea>
+    <div >{{valeur2}}</div>
+
+</div>
+
+
+
+<script>
+	const appli = {
+		data () {
+				return {
+                    titre:"Cliquez moi!",
+                    compteur:0,
+                    champ_de_saisie:"",
+                    par_afficher:"",
+                    valeur1:"",
+                    valeur2:"",
+					
+				}
+			},
+	
+    methods:{
+        change() {
+            this.titre="cliqué";
+            return false ;
+        },
+        incrementer(){
+            this.compteur+=1;
+            return false
+
+        },
+        decrementer(){
+            this.compteur-=1;
+            return false ;
+
+        },
+        entrer(){
+            for (let i=0;i<this.valeur1.length;i++){
+                if (this.valeur1[i]==' '){
+                    this.valeur2="vous ne devez pas entrer un espace ";
+                }
+            }
+
+        }
+
+    }
+};
+	
+Vue.createApp(appli).mount("#monapp");
+	
+Vue.createApp(appli).mount("#app2");
+
+Vue.createApp(appli).mount("#ap9");
+
+
+</script>
+
+</body>
+</html>
