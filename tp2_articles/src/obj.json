@@ -1,0 +1,84 @@
+[
+      {
+        "id": 1,
+        "title": "Introduction à Vue.js",
+        "body": "Vue.js est un framework JavaScript progressif qui permet de créer des interfaces utilisateur dynamiques. Il est simple à apprendre et offre une excellente réactivité. Découvrez comment Vue facilite la gestion des états dans une application complexe.",
+        "tags": ["Vue.js", "JavaScript", "Frontend"],
+        "created_at": "2025-03-01",
+        "updated_at": "2025-03-05"
+      },
+      {
+        "id": 2,
+        "title": "Les bases de Node.js",
+        "body": "Node.js permet d'exécuter du JavaScript côté serveur. Dans cet article, nous explorerons les concepts fondamentaux et les avantages de Node.js pour le développement backend.",
+        "tags": ["Node.js", "JavaScript", "Backend"],
+        "created_at": "2025-03-03",
+        "updated_at": "2025-03-04"
+      },
+      {
+        "id": 3,
+        "title": "Le DOM et son utilisation avec JavaScript",
+        "body": "Le DOM (Document Object Model) est une interface de programmation qui permet d'interagir avec la structure HTML d'un document. Cet article explore son fonctionnement et montre comment manipuler le DOM avec JavaScript.",
+        "tags": ["JavaScript", "DOM", "Web Development"],
+        "created_at": "2025-03-05",
+        "updated_at": "2025-03-06"
+      },
+      {
+        "id": 4,
+        "title": "Introduction à TypeScript",
+        "body": "TypeScript est un sur-ensemble de JavaScript qui permet de rajouter un typage statique. Cet article explique les bases de TypeScript et comment il peut améliorer la qualité du code JavaScript.",
+        "tags": ["TypeScript", "JavaScript", "Frontend"],
+        "created_at": "2025-03-08",
+        "updated_at": "2025-03-09"
+      },
+      {
+        "id": 5,
+        "title": "Comprendre le CSS Grid",
+        "body": "Le CSS Grid Layout permet de créer des mises en page complexes en utilisant une grille. Cet article détaille comment utiliser CSS Grid pour concevoir des designs responsives.",
+        "tags": ["CSS", "Web Design", "Frontend"],
+        "created_at": "2025-03-10",
+        "updated_at": "2025-03-11"
+      },
+      {
+        "id": 6,
+        "title": "Les Promises en JavaScript",
+        "body": "Les Promises sont un moyen puissant de gérer les opérations asynchrones en JavaScript. Cet article vous guidera à travers la création et l'utilisation des Promises.",
+        "tags": ["JavaScript", "Async Programming", "Promises"],
+        "created_at": "2025-03-12",
+        "updated_at": "2025-03-13"
+      },
+      {
+        "id": 7,
+        "title": "Introduction à Express.js",
+        "body": "Express.js est un framework pour Node.js qui simplifie le développement d'applications web et d'API. Découvrez comment créer un serveur simple avec Express.",
+        "tags": ["Node.js", "Express.js", "Backend"],
+        "created_at": "2025-03-15",
+        "updated_at": "2025-03-16"
+      },
+      {
+        "id": 8,
+        "title": "Gestion d'état avec Vuex",
+        "body": "Vuex est une bibliothèque de gestion d'état pour Vue.js. Cet article explore l'utilisation de Vuex pour centraliser la gestion des données dans une application Vue.",
+        "tags": ["Vue.js", "Vuex", "Frontend"],
+        "created_at": "2025-03-18",
+        "updated_at": "2025-03-19"
+      },
+      {
+        "id": 9,
+        "title": "Créer une API REST avec Node.js",
+        "body": "Dans cet article, nous allons créer une API RESTful en utilisant Node.js et Express. Vous apprendrez comment configurer des routes et envoyer des données au format JSON.",
+        "tags": ["Node.js", "Express.js", "Backend"],
+        "created_at": "2025-03-20",
+        "updated_at": "2025-03-21"
+      },
+      {
+        "id": 10,
+        "title": "Optimisation des performances avec Webpack",
+        "body": "Webpack est un bundler JavaScript puissant. Cet article explique comment configurer Webpack pour optimiser les performances d'une application web, en particulier pour les applications Vue.js.",
+        "tags": ["Webpack", "JavaScript", "Frontend"],
+        "created_at": "2025-03-22",
+        "updated_at": "2025-03-23"
+      }
+    ]
+  
+  
